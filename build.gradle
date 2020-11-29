@@ -1,0 +1,40 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
+    id 'com.adarshr.test-logger' version '2.1.1'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def poiVersion = '4.1.2'
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    //this is a library to read microsoft file formats (unknown limitations)
+    compile group: 'org.apache.poi', name: 'poi', version: poiVersion
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: poiVersion
+    //HTML parsing library
+    implementation "it.skrape:skrapeit-core:1.0.0-alpha8"
+    //AccessDB library
+    implementation "com.healthmarketscience.jackcess:jackcess:3.5.1"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test-testng"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+test {
+    useTestNG()
+
+    testlogger {
+        theme 'mocha'
+    }
+}
