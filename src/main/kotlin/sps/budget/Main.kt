@@ -12,17 +12,6 @@ import java.io.File
 
 object Main {
 
-
-
-    // teacher --> school based on FTE
-    const val tableName = "2019-2020S-275PreliminaryForPublic"
-    fun readAccessDB(resourcePath: String): String {
-        val fileURI = this::class.java.classLoader.getResource(resourcePath).toURI()
-        val file = File(fileURI)
-        val db = DatabaseBuilder.open(file)
-
-        return db.getTable(tableName).columns.elementAt(3).name
-    }
 }
 
 
